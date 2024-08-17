@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "186912980635",
+    "project_id": "chatapp-d55aa",
+    "storage_bucket": "chatapp-d55aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186912980635:android:f85440161de5d559fd903e",
+        "android_client_info": {
+          "package_name": "com.tal.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWFiYvXcWa3BLYvTKsH9T2u0bxeUz25do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

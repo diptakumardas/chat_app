@@ -1,11 +1,11 @@
-import 'package:chat_app/auth/login_or_register.dart';
 import 'package:chat_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/home_page.dart';
+import '../../pages/home_page.dart';
+import 'login_or_register.dart';
 
 class AuthGate extends StatefulWidget {
   const AuthGate({super.key});

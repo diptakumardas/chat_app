@@ -1,32 +1,30 @@
-import 'package:chat_app/auth/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../services/auth/auth_service.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_textfield.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key, required this.ontap});
+class RegisterPage extends StatelessWidget {
+   RegisterPage({super.key, required this.ontap});
   final void Function()? ontap;
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = TextEditingController();
+
   TextEditingController _passewordController = TextEditingController();
+
   TextEditingController _confirmpassewordController = TextEditingController();
+
   void register(BuildContext context) {
     final _auth = AuthService();
-    if (_passewordController == _confirmpassewordController) {
+    if (_passewordController.text == _confirmpassewordController.text) {
       try {
         _auth.signUpWithEmailPassword(
             _emailController.text, _passewordController.text);
       } catch (e) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(title: Text(e.toString())));
+            builder: (context) => AlertDialog(title: Text("User created!!")));
       }
     } else {
       showDialog(
@@ -85,9 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             MyButton(
               title: "Register",
-              ontap: (){
-                register(context);
-              },
+              ontap: () => register(context),
             ),
             SizedBox(
               height: 15,
@@ -101,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 GestureDetector(
-                  onTap: widget.ontap,
+                  onTap: ontap,
                   child: Text(
                     "Login",
                     style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/services/chat/chat_services.dart';
+import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:chat_app/widgets/my_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +32,10 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.receiverEmail)),
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.grey,
+          title: Text(widget.receiverEmail)),
       body: Column(
         children: [
           Expanded(child: _buildMessageList()),
@@ -70,19 +74,33 @@ class _ChatPageState extends State<ChatPage> {
 
     return Container(
         alignment: alignment,
-        child: Text(data['message']));
+        child: Column(
+          crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [
+            ChatBubble(message: data["message"], isCurrentUser: isCurrentUser)
+
+          ],
+        ));
   }
 
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        Expanded(
-            child: MyTextfield(
-                hintText: "Type your message here",
-                obscureText: false,
-                controller: _messageController)),
-        IconButton(onPressed: sendMessage, icon: Icon(Icons.send))
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(
+        children: [
+          Expanded(
+              child: MyTextfield(
+                  hintText: "Type your message here",
+                  obscureText: false,
+                  controller: _messageController)),
+          Container(
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(40)
+              ),
+              child: IconButton(onPressed: sendMessage, icon: Icon(Icons.send,color: Colors.white,)))
+        ],
+      ),
     );
   }
 }

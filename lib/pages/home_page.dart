@@ -21,7 +21,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
         title: Text("HomePage"),
+        centerTitle: true,
       ),
       drawer: MyDrawer(),
       body: _buildUserList(),
@@ -38,7 +41,10 @@ class _HomePageState extends State<HomePage> {
             return Text("error");
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Container(
+                height: 50,
+                width: 50,
+                child: Text("Loading ........"));
           }
           return ListView(
             children: snapshot.data!
